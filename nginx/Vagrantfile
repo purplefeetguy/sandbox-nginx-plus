@@ -9,11 +9,11 @@ Vagrant.configure("2") do |config|
   # Uncomment line below if you are using Hyper-V
   #config.vm.synced_folder ".", "/vagrant", type: "smb", mount_options: ["vers=2.1"]
   #config.vm.synced_folder ".", "/vagrant", type: "smb", smb_host: "172.21.48.1", mount_options: ["vers=2.1"]
-  # config.vm.synced_folder ".", "/vagrant", {
-  #   type: "smb", mount_options: ["vers=3.0"],
-  #   smb_username: ENV["VAGRANT_SMB_USERNAME"],
-  #   smb_password: ENV["VAGRANT_SMB_PASSWORD"]
-  # }
+  config.vm.synced_folder ".", "/vagrant", {
+    type: "smb", smb_host: "172.26.96.1", mount_options: ["vers=3.0"],
+    smb_username: ENV["VAGRANT_SMB_USERNAME"],
+    smb_password: ENV["VAGRANT_SMB_PASSWORD"]
+  }
   #config.vm.synced_folder ".", "/vagrant", type: "nfs"
 
   # The most common configuration options are documented and commented below.
@@ -24,7 +24,7 @@ Vagrant.configure("2") do |config|
   # boxes at https://vagrantcloud.com/search.
   #config.vm.box = "ubuntu/bionic64"
   
-  config.vm.define :build001 do |server|
+  config.vm.define :nginxsndbox01 do |server|
     server.vm.box = "centos/7"
     server.vm.hostname = "pflnginx01"
     server.vm.network "private_network", type: "dhcp"
